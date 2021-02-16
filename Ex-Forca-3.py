@@ -1,5 +1,6 @@
 import os
-#FUNCAO ESPERA DE 0 A 5 LINHAS DE COGIDO
+
+#FUNCAO ESPERA UM INTEIRO DE 0 A 5
 def Renderizar_Boneco(vidas):
     os.system("clear")
     imagem = "forca_"+str(vidas)+".txt"
