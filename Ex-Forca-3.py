@@ -1,3 +1,5 @@
+import os
+
 def Iniciar(): #Bernardo
     erro = True
     palavra = ""
@@ -12,6 +14,7 @@ def Iniciar(): #Bernardo
             if palavra[i] not in "ABCDEFGHIJKLMNOPQRSTUVXZ":
                 erro = True
         if erro: print("Caracteres invalidos na palavra, insira novamente")
+    os.system("clear")
     return [palavra,acertos]
 
 def Ler_Letra(palavra, letra, erros, acertos):  # VIcTOR
@@ -20,23 +23,19 @@ def Ler_Letra(palavra, letra, erros, acertos):  # VIcTOR
 # Letras repetidas e não repetidas ERRADAS => correta = False
     correta = False
     letra = letra.upper()
-    if len(letra) == 1 and letra in "ABCDEFGHIJKLMNOPQRSTUVXZ":
-        for cada_letra1 in acertos:
-            if cada_letra1 != letra:
-                correta = False
-            else:
-                correta = True
-                break
-        for cada_letra2 in palavra:
-            if cada_letra2 != letra:
-                correta = False
+    while len(letra) != 1 or letra not in "ABCDEFGHIJKLMNOPQRSTUVXZ":
+        letra = input("Letra invalida, insira novamente: ")
+        letra = letra.upper()
 
-            else:
-                correta = True
-                break
-    else:
-        print("Essa letra nao eh valida")
-    return correta
+    for cada_letra in acertos:
+        if cada_letra == letra:
+            correta = True
+            break
+    for cada_letra in palavra:
+        if cada_letra == letra:
+            correta = True
+            break
+    return [correta,letra]
 
 def Escreve_Palavra(palavra,letra,correta,erros,acertos,vidas): #ARTHUR
     #ATRIBUI A LETRA NOS ACERTOS OU ERROS E IMPRIME O JOGO NA TELA
@@ -68,7 +67,7 @@ def Escreve_Palavra(palavra,letra,correta,erros,acertos,vidas): #ARTHUR
     return[erros,acertos,vidas]
 
 def Renderizar_Boneco(vidas): #Bernardo
-    #os.system("clear")
+    os.system("clear")
     imagem = "forca_"+str(vidas)+".txt"
     with open(imagem,"r") as boneco:
         boneco = boneco.read()
@@ -87,7 +86,7 @@ while True: # LOOP, CONTINUA O JOGO ATE O JOGADOR SAIR
         letra = input("Letra: ")
         for i in range(10):
             print()
-        correta = Ler_Letra(palavra, letra, erros, acertos)
+        correta , letra = Ler_Letra(palavra, letra, erros, acertos)
         erros, acertos, vida = Escreve_Palavra(palavra,letra,correta,erros,acertos,vida)
         
         if '_' not in acertos: # CHECAR VITORIA
