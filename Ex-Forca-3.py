@@ -1,5 +1,3 @@
-import os
-
 def Iniciar(): #Bernardo
     erro = True
     palavra = ""
@@ -67,9 +65,7 @@ def Escreve_Palavra(palavra,letra,correta,erros,acertos,vidas): #ARTHUR
     print(f'\n             ', end=" ")
     print(f"Você ainda tem {vidas} chances!")
 
-    return[erros,acertos]
-
-#Pessoa casa tudo (Otavio)
+    return[erros,acertos,vidas]
 
 def Renderizar_Boneco(vidas): #Bernardo
     #os.system("clear")
@@ -80,9 +76,38 @@ def Renderizar_Boneco(vidas): #Bernardo
 
 # A PARTIR DAQUI N EH FUNCAO
 
-palavra, acertos = Iniciar()
-letra = input("Letra: ")
-erros = []
-vida = 0
-correta = Ler_Letra(palavra, letra, erros, acertos)
-erros, acertos = Escreve_Palavra(palavra,letra,correta,erros,acertos,vida)
+print("   Bem vindo ao jogo da forca, um jogo estranhamente mórbido para se")
+print("   ensinar vocabulário a crianças do 3º ano do fundamental! ")
+while True: # LOOP, CONTINUA O JOGO ATE O JOGADOR SAIR
+    palavra, acertos = Iniciar()
+    erros = []
+    vida = 5
+    while True: #LOOP LOGICO, PARAR ASSIM QUE GANHAR OU PERDER
+        
+        letra = input("Letra: ")
+        for i in range(10):
+            print()
+        correta = Ler_Letra(palavra, letra, erros, acertos)
+        erros, acertos, vida = Escreve_Palavra(palavra,letra,correta,erros,acertos,vida)
+        
+        if '_' not in acertos: # CHECAR VITORIA
+            print(f'\n             ', end=" ")
+            print(f"Você Venceu!")
+            print(f'\n             ', end=" ")
+            break
+        
+        elif vida == 0: #CHECAR DERROTA
+            print(f'\n             ', end=" ")
+            print(f"Você Perdeu...")
+            print(f'\n             ', end=" ")
+            print(f"A palavra era {palavra}.")
+            print(f'\n             ', end=" ")
+            break
+        
+    try:
+        revanche = input(f"Gostaria de jogar novamente? (S)im ou (N)ão? ").upper()
+        if revanche != 'S':
+            break
+    except:
+        break
+input("https://www.youtube.com/watch?v=le5uGqHKll8    ")
