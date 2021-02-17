@@ -1,8 +1,9 @@
 import os
 
-def Iniciar(): #BERNARDO
-    #ESSA FUNCAO PERGUNTA A PALAVRA QUE TEM QUE SER ACERTADA e PREENCHE OS ACERTOS COM UNDERLINES
-    return ... #PALAVRA
+def Iniciar(): #Bernardo
+    palavra = input("Palavra a ser acertada: ")
+    os.system("clear")
+    return palavra
 
 def Ler_Letra(palavra,letra,erros,acertos): #VITOR
     #ESSA FUNCAO LE UMA UNICA LETRA, CONFERE SE ELA EH VALIDA E VE SE EXISTE NA PALAVRA
