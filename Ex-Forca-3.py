@@ -37,7 +37,7 @@ def Ler_Letra(palavra, letra, erros, acertos):  # VIcTOR
                 correta = True
                 break
     else:
-        print("Essa letra não eh valida")
+        print("Essa letra nao eh valida")
     return correta
 
 def Escreve_Palavra(palavra,letra,correta,erros,acertos,vidas): #ARTHUR
@@ -83,6 +83,6 @@ def Renderizar_Boneco(vidas): #Bernardo
 palavra, acertos = Iniciar()
 letra = input("Letra: ")
 erros = []
-vida = 5
+vida = 0
 correta = Ler_Letra(palavra, letra, erros, acertos)
 erros, acertos = Escreve_Palavra(palavra,letra,correta,erros,acertos,vida)
