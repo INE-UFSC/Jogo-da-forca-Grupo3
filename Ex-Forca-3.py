@@ -28,6 +28,8 @@ def Renderizar_Boneco(vidas): #Bernardo
 
 # VE SE FUNCIONOU AI KKKK
 
+#ve se foi --Victor
+
 palavra = "palavra"
 erros = []
 acertos = [] #lista com os caracteres
