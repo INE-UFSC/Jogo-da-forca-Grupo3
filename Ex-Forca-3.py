@@ -1,9 +1,20 @@
 import os
 
 def Iniciar(): #Bernardo
-    palavra = input("Palavra a ser acertada: ")
-    os.system("clear")
-    return palavra
+    erro = True
+    palavra = ""
+    acertos = []
+    while erro:
+        erro = False
+        palavra = input("Palavra a ser acertada: ")
+        palavra = palavra.upper()
+        acertos = list()
+        for i in range(len(palavra)):
+            acertos.append("_")
+            if palavra[i] not in "ABCDEFGHIJKLMNOPQRSTUVXZ":
+                erro = True
+        if erro: print("Caracteres invalidos na palavra, insira novamente")
+    return [palavra,acertos]
 
 def Ler_Letra(palavra, letra, erros, acertos):  # VIcTOR
 # ESSA FUNCAO LE UMA UNICA LETRA, CONFERE SE ELA EH VALIDA E VE SE EXISTE NA PALAVRA
@@ -11,7 +22,6 @@ def Ler_Letra(palavra, letra, erros, acertos):  # VIcTOR
 # Letras repetidas e não repetidas ERRADAS => correta = False
     correta = False
     letra = letra.upper()
-    palavra = palavra.upper()
     if len(letra) == 1 and letra in "ABCDEFGHIJKLMNOPQRSTUVXZ":
         for cada_letra1 in acertos:
             if cada_letra1 != letra:
@@ -27,15 +37,13 @@ def Ler_Letra(palavra, letra, erros, acertos):  # VIcTOR
                 correta = True
                 break
     else:
-        print("Essa letra não é válida")
+        print("Essa letra não eh valida")
     return correta
 
 def Escreve_Palavra(palavra,letra,correta,erros,acertos,vidas): #ARTHUR
-    #ATRIBUI A LETRA NOS ACERTOS OU ERROS
-    #AQUI ELA ESCREVE AS COISA NA TELA
+    #ATRIBUI A LETRA NOS ACERTOS OU ERROS E IMPRIME O JOGO NA TELA
     letra = letra.upper()
-    palavra = palavra.upper()
-    if correta == True:
+    if correta:
         for i in range(len(palavra)):
             if palavra[i] == letra:
                 acertos[i] = letra
@@ -63,9 +71,8 @@ def Escreve_Palavra(palavra,letra,correta,erros,acertos,vidas): #ARTHUR
 
 #Pessoa casa tudo (Otavio)
 
-#FUNCAO ESPERA UM INTEIRO DE 0 A 5
 def Renderizar_Boneco(vidas): #Bernardo
-    os.system("clear")
+    #os.system("clear")
     imagem = "forca_"+str(vidas)+".txt"
     with open(imagem,"r") as boneco:
         boneco = boneco.read()
@@ -73,8 +80,9 @@ def Renderizar_Boneco(vidas): #Bernardo
 
 # A PARTIR DAQUI N EH FUNCAO
 
-palavra = "palavra"
+palavra, acertos = Iniciar()
+letra = input("Letra: ")
 erros = []
-acertos = [] #lista com os caracteres
-vidas = 5
-Renderizar_Boneco(vidas)
+vida = 5
+correta = Ler_Letra(palavra, letra, erros, acertos)
+erros, acertos = Escreve_Palavra(palavra,letra,correta,erros,acertos,vida)
