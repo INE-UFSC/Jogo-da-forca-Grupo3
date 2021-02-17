@@ -5,9 +5,30 @@ def Iniciar(): #Bernardo
     os.system("clear")
     return palavra
 
-def Ler_Letra(palavra,letra,erros,acertos): #VITOR
-    #ESSA FUNCAO LE UMA UNICA LETRA, CONFERE SE ELA EH VALIDA E VE SE EXISTE NA PALAVRA
-    return [acertou]
+def Ler_Letra(palavra, letra, erros, acertos):  # VIcTOR
+# ESSA FUNCAO LE UMA UNICA LETRA, CONFERE SE ELA EH VALIDA E VE SE EXISTE NA PALAVRA
+# Letras repetidas e não repetidas acertadas => correta = True
+# Letras repetidas e não repetidas ERRADAS => correta = False
+    correta = False
+    letra = letra.upper()
+    palavra = palavra.upper()
+    if len(letra) == 1 and letra in "ABCDEFGHIJKLMNOPQRSTUVXZ":
+        for cada_letra1 in acertos:
+            if cada_letra1 != letra:
+                correta = False
+            else:
+                correta = True
+                break
+        for cada_letra2 in palavra:
+            if cada_letra2 != letra:
+                correta = False
+
+            else:
+                correta = True
+                break
+    else:
+        print("Essa letra não é válida")
+    return correta
 
 def Escreve_Palavra(palavra,letra,correta,erros,acertos,vidas): #ARTHUR
     #ATRIBUI A LETRA NOS ACERTOS OU ERROS
@@ -51,10 +72,6 @@ def Renderizar_Boneco(vidas): #Bernardo
         print(boneco)
 
 # A PARTIR DAQUI N EH FUNCAO
-
-# VE SE FUNCIONOU AI KKKK
-
-#ve se foi --Victor
 
 palavra = "palavra"
 erros = []
