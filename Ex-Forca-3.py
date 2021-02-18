@@ -6,14 +6,15 @@ def Iniciar(): #Bernardo
     acertos = []
     while erro:
         erro = False
-        palavra = input("   Palavra a ser acertada: ")
+        palavra = input("   Palavra(s) a adivinhar: ")
         palavra = palavra.upper()
         acertos = list()
         for i in range(len(palavra)):
             acertos.append("_")
-            if palavra[i] not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+            if palavra[i] not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ ":
                 erro = True
-        if erro: print("   Caracteres invalidos na palavra, insira novamente")
+        if erro: print("   Caracteres invalidos na(s) palavra(s), insira novamente")
+        else: acertos.append(' ')
     os.system('cls' if os.name=='nt' else 'clear')
     return [palavra,acertos]
 
@@ -84,6 +85,7 @@ while True: # LOOP, CONTINUA O JOGO ATE O JOGADOR SAIR
     palavra, acertos = Iniciar()
     erros = []
     vida = 5
+    erros, acertos, vida = Escreve_Palavra(palavra,' ',True,erros,acertos,vida)
     while True: #LOOP LOGICO, PARAR ASSIM QUE GANHAR OU PERDER
         
         print()
