@@ -13,7 +13,9 @@ def Iniciar(): #Bernardo
             acertos.append("_")
             if palavra[i] not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ ":
                 erro = True
-        if erro: print("   Caracteres invalidos na(s) palavra(s), insira novamente")
+        if erro:
+            print("   Caracteres inválidos na(s) palavra(s), insira novamente.")
+            print("   Dica: evite acentos, números, pontuação, e 'ç'")
         else: acertos.append(' ')
     os.system('cls' if os.name=='nt' else 'clear')
     return [palavra,acertos]
