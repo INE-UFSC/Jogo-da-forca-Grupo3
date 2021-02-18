@@ -6,15 +6,15 @@ def Iniciar(): #Bernardo
     acertos = []
     while erro:
         erro = False
-        palavra = input("Palavra a ser acertada: ")
+        palavra = input("   Palavra a ser acertada: ")
         palavra = palavra.upper()
         acertos = list()
         for i in range(len(palavra)):
             acertos.append("_")
-            if palavra[i] not in "ABCDEFGHIJKLMNOPQRSTUVXZ":
+            if palavra[i] not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
                 erro = True
-        if erro: print("Caracteres invalidos na palavra, insira novamente")
-    os.system("clear")
+        if erro: print("   Caracteres invalidos na palavra, insira novamente")
+    os.system('cls' if os.name=='nt' else 'clear')
     return [palavra,acertos]
 
 def Ler_Letra(palavra, letra, erros, acertos):  # VIcTOR
@@ -23,8 +23,8 @@ def Ler_Letra(palavra, letra, erros, acertos):  # VIcTOR
 # Letras repetidas e não repetidas ERRADAS => correta = False
     correta = False
     letra = letra.upper()
-    while len(letra) != 1 or letra not in "ABCDEFGHIJKLMNOPQRSTUVXZ":
-        letra = input("Letra invalida, insira novamente: ")
+    while len(letra) != 1 or letra not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
+        letra = input("   Letra invalida, insira novamente: ")
         letra = letra.upper()
 
     for cada_letra in acertos:
@@ -67,32 +67,33 @@ def Escreve_Palavra(palavra,letra,correta,erros,acertos,vidas): #ARTHUR
     return[erros,acertos,vidas]
 
 def Renderizar_Boneco(vidas): #Bernardo
-    os.system("clear")
+    os.system('cls' if os.name=='nt' else 'clear')
     imagem = "forca_"+str(vidas)+".txt"
     with open(imagem,"r") as boneco:
         boneco = boneco.read()
+        for i in range(4):
+            print()
         print(boneco)
 
 # A PARTIR DAQUI N EH FUNCAO
 
 print("   Bem vindo ao jogo da forca, um jogo estranhamente mórbido para se")
 print("   ensinar vocabulário a crianças do 3º ano do fundamental! ")
+print()
 while True: # LOOP, CONTINUA O JOGO ATE O JOGADOR SAIR
     palavra, acertos = Iniciar()
     erros = []
     vida = 5
     while True: #LOOP LOGICO, PARAR ASSIM QUE GANHAR OU PERDER
         
-        letra = input("Letra: ")
-        for i in range(10):
-            print()
+        print()
+        letra = input("   Adivinhe uma letra: ")
         correta , letra = Ler_Letra(palavra, letra, erros, acertos)
         erros, acertos, vida = Escreve_Palavra(palavra,letra,correta,erros,acertos,vida)
         
         if '_' not in acertos: # CHECAR VITORIA
             print(f'\n             ', end=" ")
             print(f"Você Venceu!")
-            print(f'\n             ', end=" ")
             break
         
         elif vida == 0: #CHECAR DERROTA
@@ -100,13 +101,10 @@ while True: # LOOP, CONTINUA O JOGO ATE O JOGADOR SAIR
             print(f"Você Perdeu...")
             print(f'\n             ', end=" ")
             print(f"A palavra era {palavra}.")
-            print(f'\n             ', end=" ")
             break
-        
-    try:
-        revanche = input(f"Gostaria de jogar novamente? (S)im ou (N)ão? ").upper()
-        if revanche != 'S':
-            break
-    except:
+    
+    print(f'\n             ', end=" ")
+    revanche = input(f"Gostaria de jogar novamente? Sim ou Não? ").upper()
+    if revanche not in ['S','SIM','Y','YES']:
         break
 input("https://www.youtube.com/watch?v=le5uGqHKll8    ")
