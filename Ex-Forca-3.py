@@ -17,7 +17,8 @@ def Iniciar(): #Bernardo
             print("   Caracteres inválidos na(s) palavra(s), insira novamente.")
             print("   Dica: evite acentos, números, pontuação, e 'ç'")
         else: acertos.append(' ')
-    os.system('cls' if os.name=='nt' else 'clear')
+    for i in range(25):
+        print()
     return [palavra,acertos]
 
 def Ler_Letra(palavra, letra, erros, acertos):  # VIcTOR
@@ -70,7 +71,8 @@ def Escreve_Palavra(palavra,letra,correta,erros,acertos,vidas): #ARTHUR
     return[erros,acertos,vidas]
 
 def Renderizar_Boneco(vidas): #Bernardo
-    os.system('cls' if os.name=='nt' else 'clear')
+    for i in range(25):
+        print()
     imagem = "forca_"+str(vidas)+".txt"
     with open(imagem,"r") as boneco:
         boneco = boneco.read()
