@@ -21,7 +21,7 @@ def Iniciar(): #Bernardo
         print()
     return [palavra,acertos]
 
-def Ler_Letra(palavra, letra, erros, acertos):  # VIcTOR
+def Ler_Letra(palavra, letra, acertos):  # VIcTOR
 # ESSA FUNCAO LE UMA UNICA LETRA, CONFERE SE ELA EH VALIDA E VE SE EXISTE NA PALAVRA
 # Letras repetidas e não repetidas acertadas => correta = True
 # Letras repetidas e não repetidas ERRADAS => correta = False
@@ -30,6 +30,11 @@ def Ler_Letra(palavra, letra, erros, acertos):  # VIcTOR
     while len(letra) != 1 or letra not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
         letra = input("   Letra invalida, insira novamente: ")
         letra = letra.upper()
+
+    for cada_letra in acertos:
+        if cada_letra == letra:
+            correta = True
+            break
 
     for cada_letra in palavra:
         if cada_letra == letra:
@@ -88,7 +93,7 @@ while True: # LOOP, CONTINUA O JOGO ATE O JOGADOR SAIR
         
         print()
         letra = input("   Adivinhe uma letra: ")
-        correta , letra = Ler_Letra(palavra, letra, erros, acertos)
+        correta , letra = Ler_Letra(palavra, letra, acertos)
         erros, acertos, vida = Escreve_Palavra(palavra,letra,correta,erros,acertos,vida)
         
         if '_' not in acertos: # CHECAR VITORIA
