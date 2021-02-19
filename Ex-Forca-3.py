@@ -27,14 +27,10 @@ def Ler_Letra(palavra, letra, acertos):  # VIcTOR
 # Letras repetidas e não repetidas ERRADAS => correta = False
     correta = False
     letra = letra.upper()
+    #confere se a letra é valida
     while len(letra) != 1 or letra not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
         letra = input("   Letra invalida, insira novamente: ")
         letra = letra.upper()
-
-    for cada_letra in acertos:
-        if cada_letra == letra:
-            correta = True
-            break
 
     for cada_letra in palavra:
         if cada_letra == letra:
