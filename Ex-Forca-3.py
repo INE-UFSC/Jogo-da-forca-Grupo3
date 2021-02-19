@@ -66,13 +66,15 @@ def Escreve_Palavra(palavra,letra,correta,erros,acertos,vidas): #ARTHUR
     
     print()
     print(f'\n             ', end=" ")
-    print(f"Você ainda tem {vidas} chances!")
+    if vidas>0:
+        print(f"Você ainda tem {vidas} chances!")
 
     return[erros,acertos,vidas]
 
 def Renderizar_Boneco(vidas): #Bernardo
     for i in range(25):
         print()
+    # os.system("clear") Limpa no terminal (Tava ruim no pycharm dai tiramo)
     imagem = "forca_"+str(vidas)+".txt"
     with open(imagem,"r") as boneco:
         boneco = boneco.read()
@@ -80,11 +82,12 @@ def Renderizar_Boneco(vidas): #Bernardo
             print()
         print(boneco)
 
-# A PARTIR DAQUI N EH FUNCAO
+# A PARTIR DAQUI N EH FUNCAO (Otavio)
 
 print("   Bem vindo ao jogo da forca, um jogo estranhamente mórbido para se")
 print("   ensinar vocabulário a crianças do 3º ano do fundamental! ")
 print()
+
 while True: # LOOP, CONTINUA O JOGO ATE O JOGADOR SAIR
     palavra, acertos = Iniciar()
     erros = []
