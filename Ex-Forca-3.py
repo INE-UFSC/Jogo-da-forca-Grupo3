@@ -31,10 +31,6 @@ def Ler_Letra(palavra, letra, erros, acertos):  # VIcTOR
         letra = input("   Letra invalida, insira novamente: ")
         letra = letra.upper()
 
-    for cada_letra in acertos:
-        if cada_letra == letra:
-            correta = True
-            break
     for cada_letra in palavra:
         if cada_letra == letra:
             correta = True
@@ -53,21 +49,16 @@ def Escreve_Palavra(palavra,letra,correta,erros,acertos,vidas): #ARTHUR
         vidas = vidas-1
         
     Renderizar_Boneco(vidas)
-    print()
-    print(f'                ', end=" ")
+    print('\t\t\t', end=" ")
     for l in acertos:
         print(f"{l}", end=" ")
-    
-    print()
-    print(f'\n             ', end=" ")
-    print("ERROS: ",end=" ")
+
+    print("\n\n\t\t\tERROS: ",end=" ")
     for e in erros:
         print(f"{e}", end=" ")
-    
-    print()
-    print(f'\n             ', end=" ")
+
     if vidas>0:
-        print(f"Você ainda tem {vidas} chances!")
+        print(f"\n\n\t\t\tVocê ainda tem {vidas} chances!", end=" ")
 
     return[erros,acertos,vidas]
 
@@ -101,19 +92,15 @@ while True: # LOOP, CONTINUA O JOGO ATE O JOGADOR SAIR
         erros, acertos, vida = Escreve_Palavra(palavra,letra,correta,erros,acertos,vida)
         
         if '_' not in acertos: # CHECAR VITORIA
-            print(f'\n             ', end=" ")
-            print(f"Você Venceu!")
+            print("\n\n\t\t\tVocê Venceu!")
             break
         
         elif vida == 0: #CHECAR DERROTA
-            print(f'\n             ', end=" ")
-            print(f"Você Perdeu...")
-            print(f'\n             ', end=" ")
-            print(f"A palavra era {palavra}.")
+            print("\n\n\t\t\tVocê Perdeu...")
+            print(f"\n\t\t\tA palavra era {palavra}.")
             break
-    
-    print(f'\n             ', end=" ")
-    revanche = input(f"Gostaria de jogar novamente? Sim ou Não? ").upper()
+
+    revanche = input("\n\t\t\tGostaria de jogar novamente? Sim ou Não? ").upper()
     if revanche not in ['S','SIM','Y','YES']:
         break
 input("https://www.youtube.com/watch?v=le5uGqHKll8    ")
